@@ -1,0 +1,17 @@
+@font-face {
+    font-family: miFamilia;
+    src: url(/fonts/PixelifySans.ttf);
+}
+
+.rojo {
+    color: red;
+    font-size: larger;
+    font-weight: bolder;
+    background-color: deepskyblue;
+    text-align: center;
+    font-family: miFamilia, Arial, Helvetica, sans-serif;
+}
+
+.azul {
+    color: blue;
+}

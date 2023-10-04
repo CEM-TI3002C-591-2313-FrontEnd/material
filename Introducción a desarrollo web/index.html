@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi primer título</title>
+</head>
+<body>
+    <!-- Encabezados definen los títulos de las secciones de nuestro documento html -->
+    <h1>Encabezado 1</h1>
+    <h2>Encabezado 2</h2>
+    <h3>Encabezado 3</h3>
+    <h4>Encabezado 4</h4>
+    <h5>Encabezado 5</h5>
+    <h6>Encabezado 6</h6>
+
+    <!-- p es la definición de un texto acomodado como un párrafo -->
+    <p><strong>Lorem ipsum dolor sit amet</strong> consectetur adipisicing elit. Minima quia, esse est laboriosam, mollitia totam vel minus voluptas nam numquam sapiente alias iure. Amet asperiores modi aut veniam. Officiis, amet.
+    Debitis aperiam maiores iste non sed beatae eum veritatis, doloremque laudantium ipsam excepturi consectetur odit blanditiis praesentium nisi voluptas cupiditate delectus dignissimos sequi quasi soluta corporis, illo nobis. Quia, quae.
+    Corrupti fugiat omnis velit facilis. <em>Doloremque sint,</em> praesentium animi asperiores similique voluptatibus delectus quas, incidunt id reiciendis ad, culpa vel mollitia eius iusto explicabo nihil quidem aliquam. Alias, ullam amet.
+    Perspiciatis, temporibus in iusto eum, quos atque dolorem, enim autem quod perferendis distinctio culpa. Rem et consequatur distinctio fuga, laboriosam, aut necessitatibus tempora fugit deleniti dignissimos aspernatur repudiandae, debitis voluptas!
+    Consequuntur in distinctio, assumenda dolores corrupti a dolore suscipit maiores numquam repellendus tempore repellat molestias rem libero odit eum ipsam ratione inventore! Esse sunt quae soluta quasi voluptates magni obcaecati!</p>
+
+    <p>Este <a href="https://www.google.com">enlace</a> te lleva a Google.</p>
+    <p><a href="/segunda.html">Segunda página</a></p>
+
+    <!-- unordered list -->
+    <ul>
+        <!-- list item -->
+        <li>Hugo Boss</li>
+        <ul>
+            <li>Lentes</li>
+            <li>Camisas</li>
+            <li>Chamarras</li>
+        </ul>
+        <li>Armani</li>
+        <li>Channel</li>
+    </ul>
+
+    <!-- ordered list -->
+    <ol>
+        <li>Elemento número 1</li>
+        <li>Elemento número 2</li>
+        <li>Elemento número 3</li>
+        <li>Elemento número 4</li>
+        <li>Elemento número 5</li>
+    </ol>
+
+    <!-- definition list -->
+    <dl>
+        <!-- definition term -->
+        <dt>HMTL</dt>
+        <!-- definition -->
+        <dd>Tipo de documento común en la navegación web. Es un lenguaje de etiquetas</dd>
+        <dt>CSS</dt>
+        <dd>Hojas de estilo de cascada. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae, error!</dd>
+    </dl>
+    
+    <table>
+        <caption>Alumnos de la concentración de analítica de datos.</caption>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Matrícula</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Diego</td>
+                <td>867373</td>
+            </tr>
+            <tr>
+                <td>Brenda</td>
+                <td>475732</td>
+            </tr>
+            <tr>
+                <td>Sofía</td>
+                <td>747374</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <!-- colspan permite expandirse a más de una celda de manera horizontal -->
+                <td colspan="2">Total de alumnos 3</td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <img src="/images/oceano.jpg" alt="Imagen de un buzo tomando video en el oceano.">
+
+    <video src="/videos/perro.mp4" controls loop>
+        Video de un perro jugando. Su navegador no cuenta con soporte para video.
+    </video>
+
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/jfKfPfyJRdk?si=jIVEostfwU4Lhp9Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <hr>
+
+    <div>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, expedita.
+    </div>
+    <span>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat natus vero ipsum dicta eveniet porro reiciendis aperiam excepturi et fugit?
+    </span>
+
+    <hr>
+
+    <p>Lorem ipsum dolor sit amet.<div style="background-color: deepskyblue;">Lorem ipsum dolor sit amet.</div>Lorem ipsum dolor sit amet.</p>
+
+    <hr>
+
+    <p>Lorem ipsum dolor sit amet.<span style="background-color: aquamarine;">Lorem ipsum dolor sit amet.</span>Lorem ipsum dolor sit amet.</p>
+
+    <form action="/ruta_backend" method="post">
+        <div>
+            <label for="input nombre">Nombre</label>
+            <input type="text" name="nombre" id="input nombre">
+        </div>
+        <div>
+            <label for="input correo">Correo</label>
+            <input type="email" name="correo" id="input correo">
+        </div>
+        <div>
+            <label for="input contraseña">Contraseña</label>
+            <input type="password" name="contraseña" id="input contraseña">
+        </div>
+        <div>
+            <label for="select tipo empleado">Tipo de empleado</label>
+            <select name="tipo empleado" id="select tipo empleado">
+                <option value="gerente">Gerente</option>
+                <option value="vendedor" selected>Vendedor</option>
+                <option value="oficinista">Oficinista</option>
+            </select>
+        </div>
+        <div>
+            <span>Actividad empleado:</span>
+            <input type="radio" name="actividad empleado" id="activo" value="activo">
+            <label for="activo">Activo</label>
+            <input type="radio" name="actividad empleado" id="inactivo" value="inactivo">
+            <label for="inactivo">Inactivo</label>
+        </div>
+        <div>
+            <span>Experiencia en los siguientes departamentos:</span>
+            <input type="checkbox" name="electrónica" id="electrónica" value="electrónica">
+            <label for="electrónica">Eletróncia</label>
+            <input type="checkbox" name="caballeros" id="caballeros" value="caballeros">
+            <label for="caballeros">Caballeros</label>
+            <input type="checkbox" name="damas" id="damas" value="damas">
+            <label for="damas">Damas</label>
+        </div>
+        <div>
+            <label for="fecha">Fecha de registro:</label>
+            <input type="date" name="fecha" id="fecha">
+        </div>
+        <div>
+            <input type="submit" value="Enviar">
+        </div>
+    </form>
+
+    <!-- Etiquetas o elementos semánticos
+    <body>
+        <header>
+            <nav></nav>
+        </header>
+        <main></main>
+        <footer></footer>
+    </body> -->
+
+</body>
+</html>
