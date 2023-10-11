@@ -3,6 +3,17 @@
     src: url(/fonts/PixelifySans.ttf);
 }
 
+/* div {
+    background-color: deepskyblue;
+    border: 2px solid black;
+    padding: 5px;
+    margin: 20px;
+} */
+
+#uno {
+    background-color: aquamarine;
+}
+
 .rojo {
     color: red;
     font-size: larger;
@@ -14,4 +25,36 @@
 
 .azul {
     color: blue;
+}
+
+/* Aplica la regla a todos los selectores */
+h1, h2 { 
+    font-weight: bold;
+}
+
+div h1 {
+    color: green;
+}
+
+div > h1 {
+    color: blue;
+}
+
+div + h1 {
+    color: red;
+}
+
+a {
+    font-weight: normal;
+    color: dodgerblue;
+    text-decoration: none;
+}
+
+a:hover {
+    font-weight: bolder;
+    text-decoration: underline;
+}
+
+a:visited {
+    color: red;
 }
