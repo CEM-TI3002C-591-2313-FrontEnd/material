@@ -1,4 +1,4 @@
-from dash import Dash, html, dash_table, dcc
+from dash import Dash, html, dash_table, dcc, Input, Output, State, callback
 import dash_ag_grid as dag
 import pandas as pd
 import plotly.express as px
@@ -86,6 +86,13 @@ def get_violin():
     fig = px.violin(df, y="MonthlyIncome", color="Attrition", box=True)
     return fig
 
+def get_chart(tipo_grafica : str, columna : str) -> object:
+    if tipo_grafica == "hist":
+        fig = px.histogram(df, y=columna)
+    elif tipo_grafica == "violin":
+        fig = px.violin(df, y=columna)
+    return fig
+
 df = load_dataset()
 histogram = get_histogram()
 scatter1 = get_scatter1()
@@ -131,19 +138,33 @@ app.layout = html.Div(children=[
     dcc.Graph(figure=line),
     dcc.Graph(figure=pie),
     dcc.Graph(figure=boxplot),
-    dcc.Graph(figure=violin)
+    dcc.Graph(figure=violin),
+    dcc.Checklist(options=[
+        {"label": "Uno", "value": "1"},
+        {"label": "Dos", "value": "2"},
+        {"label": "Tres", "value": "3"},
+    ], id="checklist"),
+    dcc.Input(type="text", id="input texto"),
+    dcc.RadioItems([
+        {"label": "Histograma", "value": "hist"},
+        {"label": "Violín", "value": "violin"}
+    ], value="hist", id="radio tipo gráfica"),
+    dcc.Dropdown(options = [
+        {"label": "Edad", "value": "Age"},
+        {"label": "Tasa diaria", "value": "DailyRate"},
+        {"label": "Educación", "value": "Education"}
+    ], value="Age", id="dropdown columna"),
+    html.Div(id="contenedor gráfica")
 ], className="container")
 
-# [
-#     {"field": "Age", "editable": True, "sortable": True, "filter": True},
-#     {"field": "Attrition", "editable": True, "sortable": True, "filter": True},
-#     {"field": "BusinessTravel", "editable": True, "sortable": True, "filter": True},
-# ]
-
-# <div>
-#     <h1>Hola mundo</h1>
-#     <p>Mi primera página con Dash.</p>
-# </div>
+@callback(
+    Output("contenedor gráfica", "children"),
+    Input("radio tipo gráfica", "value"),
+    Input("dropdown columna", "value")
+)
+def mi_funcion(radio_tipo_grafica, dropdown_columna):
+    return dcc.Graph(figure=get_chart(radio_tipo_grafica, dropdown_columna))
+        
 
 if __name__ == "__main__":
     app.run_server(debug=True)
