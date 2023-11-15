@@ -1,0 +1,16 @@
+@font-face {
+    font-family: OpenSans;
+    src: url(OpenSans-Regular.ttf);
+}
+
+.encabezado {
+    background-color: #e10098;
+}
+
+.parrafo {
+    font-family: OpenSans;
+}
+
+.link-archivo:hover {
+    cursor: pointer;
+}

@@ -11,16 +11,6 @@
     font-family: OpenSans;
 }
 
-.archivo {
-    height: 60px;
-    line-height: 60px;
-    border-width: 1px;
-    border-style: dashed;
-    border-radius: 5px;
-    text-align: center;
-    margin: 10px;
-}
-
 .link-archivo:hover {
     cursor: pointer;
 }

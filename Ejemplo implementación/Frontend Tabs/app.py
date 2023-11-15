@@ -162,6 +162,7 @@ def hallazgos():
 def predicciones():
     return html.Div([
         html.Div([
+            dcc.Store(id="predictions-store"),
             html.H2("Predicciones"),
             html.P("Para poder llevar a cabo las predicciones, se debe proporcionar un archivo csv que debe contener los siguientes campos", className="parrafo"),
             html.Table([
@@ -183,10 +184,18 @@ def predicciones():
                                "Arrastra o ", 
                                html.A("selecciona el archivo",
                                       className="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover link-archivo")]), 
-                           className="archivo")
-                ], className="col-6")
+                           className="text-center p-3 border border-2 rounded-3")
+                ], className="col-4")
             ], className="row mb-3 justify-content-md-center"),
-        html.Div(id="predicciones-container", className="row")
+        html.Div(id="predicciones-container", className="row"),
+        html.Div([
+            html.Div([
+                html.Button("Descargar archivo de predicciones", id="download-predictions-btn", className="btn btn-primary btn-lg mt-3 mb-5"),
+                dcc.Download(id="download-predictions")
+            ], className="col-4 text-center")
+            ],
+                 id="download-predictions-container",
+                 className="row justify-content-center invisible")
         ], className="container mt-3")
     
 app.layout = html.Div([
@@ -213,9 +222,12 @@ def update_educationfield_violin_chart(education_fields):
     return [dcc.Graph(id=f"educationfield-violin-{x}-chart", figure=educationlevel_violin_chart(x)) for x in education_fields]
 
 @app.callback(
-    Output("predicciones-container", "children"),
+    [Output("predicciones-container", "children"),
+     Output("download-predictions-container", "className"),
+     Output("predictions-store", "data")],
     Input("uploaded-data", "contents"),
-    State("uploaded-data", "filename"))
+    State("uploaded-data", "filename"),
+    prevent_initial_call=True)
 def upload_prediction(content, filename):
     if content is not None:
         try:
@@ -236,7 +248,7 @@ def upload_prediction(content, filename):
                     if col not in df_predictions.columns:
                         return html.Div([
                             f"El archivo no contiene la columna {col}"
-                        ], className="alert alert-danger")
+                        ], className="alert alert-danger"), "row justify-content-center invisible", None
                 df_predictions = df_predictions[columnas]
                 
                 try:
@@ -273,15 +285,26 @@ def upload_prediction(content, filename):
                             ], className="card-body")
                         ], className="card")
                     ], className="row mb-5"),
-                ])
+                ]), "row justify-content-center", df_predictions.to_json(orient="split")
             else:
                 return html.Div([
                     "El archivo debe ser de tipo csv"
-                ], className="alert alert-danger")
+                ], className="alert alert-danger"), "row justify-content-center invisible", None
         except Exception as e:
             return html.Div([
                 "Hubo un error al procesar el archivo"
-            ], className="alert alert-danger")
+            ], className="alert alert-danger"), "row justify-content-center invisible", None
+            
+@app.callback(
+    Output("download-predictions", "data"),
+    Input("download-predictions-btn", "n_clicks"),
+    State("predictions-store", "data"),
+    prevent_initial_call=True)
+def download_predictions(n_clicks, data):
+    if data is not None:
+        df = pd.read_json(io.StringIO(data), orient="split")
+        return dcc.send_data_frame(df.to_csv, "predictions.csv", index=False)
 
 if __name__ == "__main__":
     app.run_server(debug=True)
+    # app.run(host="0.0.0.0")
