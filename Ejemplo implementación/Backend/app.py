@@ -129,6 +129,14 @@ def prediction_file(file: UploadFile = File(...)):
         df_pred = df_pred[model.feature_names_in_]
         df["Attrition"] = model.predict(df_pred)
         
+        # Para insertar los datos en una colección en MongoDB
+        
+        # client = MongoClient(mongoURI)
+        # db = client["employee_attrition"]
+        # collection = db["employee"]
+        
+        # collection.insert_many(df.to_dict('records'))
+        
         return JSONResponse(content = df.to_dict('records'))
         
     except Exception as e:
